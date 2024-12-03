@@ -18,14 +18,7 @@ class LoginView extends StatelessWidget {
             children: [
               const SizedBox(height: 62),
               Image.asset(MyImages.logo),
-              Text(
-                'Sign in',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                  color: MyColors.purpleColor,
-                ),
-              ),
+              _signInText,
               ElevatedButton(
                 child: const Text('Open route'),
                 onPressed: () {
@@ -51,4 +44,15 @@ class LoginView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget get _signInText {
+  return Text(
+    'Sign in',
+    style: TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.w700,
+      color: MyColors.purpleColor,
+    ),
+  );
 }

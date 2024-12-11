@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-/// Colors
 class MyColors {
   static final blackColor = HexColor('#0E0E0E');
   static final whiteColor = HexColor('#FFFFFF');

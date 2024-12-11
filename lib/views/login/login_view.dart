@@ -18,7 +18,7 @@ class LoginView extends StatelessWidget {
             children: [
               const SizedBox(height: 62),
               Image.asset(MyImages.logo),
-              _signInText,
+              _signInText('Sign in'),
               ElevatedButton(
                 child: const Text('Open route'),
                 onPressed: () {
@@ -38,6 +38,10 @@ class LoginView extends StatelessWidget {
                 },
                 onDoubleTap: () => print('clicked twice'),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: TextFormField(),
+              ),
             ],
           ),
         ),
@@ -46,9 +50,9 @@ class LoginView extends StatelessWidget {
   }
 }
 
-Widget get _signInText {
+Widget _signInText(String text) {
   return Text(
-    'Sign in',
+    text,
     style: TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.w700,

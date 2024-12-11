@@ -3,10 +3,15 @@ import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_images.dart';
 import 'package:flutter_app/views/register/register_view.dart';
 
-/// Login view
-class LoginView extends StatelessWidget {
-  /// Login view key
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  bool boolValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class LoginView extends StatelessWidget {
             children: [
               const SizedBox(height: 62),
               Image.asset(MyImages.logo),
-              _signInText('Sign in'),
+              _signInText(boolValue),
               ElevatedButton(
                 child: const Text('Open route'),
                 onPressed: () {
@@ -33,13 +38,13 @@ class LoginView extends StatelessWidget {
               GestureDetector(
                 child: const Text('Sign Up'),
                 onTap: () {
-                  print('xxx1');
-                  print('xxx2');
+                  setState(() {
+                    boolValue = !boolValue;
+                  });
                 },
-                onDoubleTap: () => print('clicked twice'),
               ),
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(),
               ),
             ],
@@ -50,9 +55,9 @@ class LoginView extends StatelessWidget {
   }
 }
 
-Widget _signInText(String text) {
+Widget _signInText(bool boolValue) {
   return Text(
-    text,
+    'Sign in $boolValue',
     style: TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.w700,

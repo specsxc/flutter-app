@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_images.dart';
 import 'package:flutter_app/views/register/register_view.dart';
+import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -43,9 +44,8 @@ class _LoginViewState extends State<LoginView> {
                   });
                 },
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextFormField(),
+              const BasicTextFormField(
+                initialValue: 'Hello',
               ),
             ],
           ),

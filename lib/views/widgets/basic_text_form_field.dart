@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BasicTextFormField extends StatelessWidget {
-  const BasicTextFormField({super.key});
+  final String initialValue;
+
+  const BasicTextFormField({required this.initialValue, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return TextFormField(initialValue: initialValue);
   }
 }

@@ -17,6 +17,7 @@ class ForgetPassword extends StatelessWidget {
             fontSize: 15,
             color: MyColors.purpleColor,
             fontWeight: FontWeight.w700,
+            fontFamily: 'Inter',
           ),
         ),),
     );

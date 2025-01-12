@@ -4,4 +4,6 @@ class MyStrings {
   static const password = 'Password';
   static const forgetPassword = 'Forget Password ?';
   static const signIn = 'Sign in';
+  static const noAccount = 'Don’t have account ? ';
+  static const signUp = 'Sign up';
 }

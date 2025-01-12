@@ -7,7 +7,6 @@ class BasicTextFormField extends StatefulWidget {
   final bool isPasswordField;
   final Widget? prefixIcon;
 
-
   const BasicTextFormField({
     required this.initialValue,
     required this.hintText,
@@ -22,7 +21,6 @@ class BasicTextFormField extends StatefulWidget {
 
 class _BasicTextFormFieldState extends State<BasicTextFormField> {
   var _isPasswordVisible = false;
-
 
   @override
   Widget build(BuildContext context) {

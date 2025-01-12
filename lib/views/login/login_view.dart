@@ -4,7 +4,7 @@ import 'package:flutter_app/utils/my_images.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/register/register_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
-import 'package:flutter_app/views/widgets/signInText.dart';
+import 'package:flutter_app/views/widgets/sign_in_text.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -32,12 +32,13 @@ class _LoginViewState extends State<LoginView> {
               ),
               const SizedBox(height: 46),
               const BasicTextFormField(
-                initialValue: 'Hello',
+                initialValue: '',
                 decoration: InputDecoration(
                 ),
               ),
+              const SizedBox(height: 40),
               const BasicTextFormField(
-                initialValue: 'Hello',
+                initialValue: '',
                 decoration: InputDecoration(
                 ),
               ),
@@ -67,4 +68,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-

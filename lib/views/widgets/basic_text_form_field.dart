@@ -17,6 +17,7 @@ class BasicTextFormField extends StatelessWidget {
         decoration: InputDecoration(
             prefixIcon: const Icon(Icons.account_circle),
             suffixIcon: Image.asset(MyImages.vector),
+            hintText: 'Email or User Name',
           border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(

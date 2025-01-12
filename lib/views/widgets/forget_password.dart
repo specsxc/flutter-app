@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_colors.dart';
+import 'package:flutter_app/utils/my_strings.dart';
 
-class TitleScreen extends StatelessWidget {
-  final String titleText;
-
-  const TitleScreen({required this.titleText, super.key});
+class ForgetPassword extends StatelessWidget {
+  const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: Text(
-          titleText,
+          MyStrings.forgetPassword,
           style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
+            fontSize: 15,
             color: MyColors.purpleColor,
-            fontFamily: 'Inter',
+            fontWeight: FontWeight.w700,
           ),
-        ),
-      ),
+        ),),
     );
   }
 }

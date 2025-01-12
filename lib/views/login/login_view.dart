@@ -4,6 +4,7 @@ import 'package:flutter_app/utils/my_images.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/register/register_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
+import 'package:flutter_app/views/widgets/forget_password.dart';
 import 'package:flutter_app/views/widgets/sign_in_text.dart';
 
 class LoginView extends StatefulWidget {
@@ -33,15 +34,18 @@ class _LoginViewState extends State<LoginView> {
               const SizedBox(height: 46),
               const BasicTextFormField(
                 initialValue: '',
-                decoration: InputDecoration(
-                ),
+                hintText: MyStrings.email,
+                decoration: InputDecoration(),
               ),
               const SizedBox(height: 40),
               const BasicTextFormField(
                 initialValue: '',
-                decoration: InputDecoration(
-                ),
+                isPasswordField: true,
+                hintText: MyStrings.password,
+                decoration: InputDecoration(),
               ),
+              const SizedBox(height: 40),
+              const ForgetPassword(),
               ElevatedButton(
                 child: const Text('Open route'),
                 onPressed: () {

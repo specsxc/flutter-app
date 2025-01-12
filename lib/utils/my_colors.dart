@@ -5,6 +5,7 @@ class MyColors {
   static final whiteColor = HexColor('#FFFFFF');
   static final purpleColor = HexColor('#471AA0');
   static final purpleColorBorder = HexColor('#9747FF');
+  static final hintColor = HexColor('#000000');
 }
 
 class HexColor extends Color {

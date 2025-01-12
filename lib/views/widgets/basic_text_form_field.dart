@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/my_colors.dart';
 
 class BasicTextFormField extends StatelessWidget {
   final String initialValue;
@@ -7,6 +8,12 @@ class BasicTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(initialValue: initialValue);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+        initialValue: initialValue,
+        decoration: InputDecoration(suffixIcon: Icon(Icons.add)),
+      ),
+    );
   }
 }

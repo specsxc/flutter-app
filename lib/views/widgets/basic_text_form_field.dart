@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_colors.dart';
-import 'package:flutter_app/utils/my_images.dart';
 
 class BasicTextFormField extends StatefulWidget {
   final String initialValue;
   final String hintText;
   final bool isPasswordField;
+  final Widget? prefixIcon;
+
 
   const BasicTextFormField({
     required this.initialValue,
-    required InputDecoration decoration,
     required this.hintText,
     this.isPasswordField = false,
+    this.prefixIcon,
     super.key,
   });
 
@@ -22,6 +23,7 @@ class BasicTextFormField extends StatefulWidget {
 class _BasicTextFormFieldState extends State<BasicTextFormField> {
   var _isPasswordVisible = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +32,8 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
         obscureText: !_isPasswordVisible,
         initialValue: widget.initialValue,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.account_circle),
+          prefixIcon: widget.prefixIcon,
+          prefixIconColor: MyColors.purpleColor,
           suffixIcon: widget.isPasswordField
               ? GestureDetector(
                   onTap: () {

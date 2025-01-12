@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_images.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/register/register_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
 import 'package:flutter_app/views/widgets/forget_password.dart';
 import 'package:flutter_app/views/widgets/sign_in_text.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -27,22 +28,19 @@ class _LoginViewState extends State<LoginView> {
             children: [
               const SizedBox(height: 62),
               Image.asset(MyImages.logo),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: TitleScreen(titleText: MyStrings.titleText),
-              ),
+              const TitleScreen(titleText: MyStrings.titleText),
               const SizedBox(height: 46),
               const BasicTextFormField(
+                prefixIcon: Icon(MdiIcons.accountCircleOutline),
                 initialValue: '',
                 hintText: MyStrings.email,
-                decoration: InputDecoration(),
               ),
               const SizedBox(height: 40),
               const BasicTextFormField(
+                prefixIcon: Icon(MdiIcons.lockOutline),
                 initialValue: '',
                 isPasswordField: true,
                 hintText: MyStrings.password,
-                decoration: InputDecoration(),
               ),
               const SizedBox(height: 40),
               const ForgetPassword(),

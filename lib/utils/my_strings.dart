@@ -6,4 +6,5 @@ class MyStrings {
   static const signIn = 'Sign in';
   static const noAccount = 'Don’t have account ? ';
   static const signUp = 'Sign up';
+  static const goBack = 'Back';
 }

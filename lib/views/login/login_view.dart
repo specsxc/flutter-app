@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_images.dart';
+import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/register/register_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
+import 'package:flutter_app/views/widgets/signInText.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -24,7 +26,21 @@ class _LoginViewState extends State<LoginView> {
             children: [
               const SizedBox(height: 62),
               Image.asset(MyImages.logo),
-              _signInText(boolValue),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: TitleScreen(titleText: MyStrings.titleText),
+              ),
+              const SizedBox(height: 46),
+              const BasicTextFormField(
+                initialValue: 'Hello',
+                decoration: InputDecoration(
+                ),
+              ),
+              const BasicTextFormField(
+                initialValue: 'Hello',
+                decoration: InputDecoration(
+                ),
+              ),
               ElevatedButton(
                 child: const Text('Open route'),
                 onPressed: () {
@@ -44,9 +60,6 @@ class _LoginViewState extends State<LoginView> {
                   });
                 },
               ),
-              const BasicTextFormField(
-                initialValue: 'Hello',
-              ),
             ],
           ),
         ),
@@ -55,13 +68,3 @@ class _LoginViewState extends State<LoginView> {
   }
 }
 
-Widget _signInText(bool boolValue) {
-  return Text(
-    'Sign in $boolValue',
-    style: TextStyle(
-      fontSize: 30,
-      fontWeight: FontWeight.w700,
-      color: MyColors.purpleColor,
-    ),
-  );
-}

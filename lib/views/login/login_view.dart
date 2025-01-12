@@ -7,6 +7,7 @@ import 'package:flutter_app/views/widgets/forget_password.dart';
 import 'package:flutter_app/views/widgets/sign_in_text.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../utils/my_colors.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -44,16 +45,29 @@ class _LoginViewState extends State<LoginView> {
               ),
               const SizedBox(height: 40),
               const ForgetPassword(),
-              ElevatedButton(
-                child: const Text('Open route'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterView(),
-                    ),
-                  );
-                },
+              const SizedBox(height: 40),
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterView(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: MyColors.whiteColor,
+                      backgroundColor: MyColors.purpleFadeColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                    ),),
+                    child: const Text(MyStrings.signIn),
+                  ),
+                ),
               ),
               GestureDetector(
                 child: const Text('Sign Up'),

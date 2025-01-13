@@ -5,6 +5,8 @@ import 'package:flutter_app/views/login/login_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../widgets/sign_in_button.dart';
+
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
 
@@ -92,6 +94,63 @@ class RegisterView extends StatelessWidget {
                     initialValue: '',
                     hintText: MyStrings.confirmPassword,
                     isPasswordField: true,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 80),
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterView(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: MyColors.whiteColor,
+                      backgroundColor: MyColors.purpleFadeColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const SignInButton(text: MyStrings.signUp),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 140),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyStrings.haveAccount,
+                    style: TextStyle(
+                      color: MyColors.purpleColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      MyStrings.signIn,
+                      style: TextStyle(
+                        color: MyColors.purpleColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 15,
+                      ),
+                    ),
                   ),
                 ],
               ),

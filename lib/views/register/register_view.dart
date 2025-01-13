@@ -97,7 +97,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 70),
               SizedBox(
                 width: double.infinity,
                 child: Padding(
@@ -122,7 +122,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 140),
+              const SizedBox(height: 120),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -23,8 +23,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: double.infinity,
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -75,7 +74,9 @@ class _LoginViewState extends State<LoginView> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    child: const SignInButton(text: MyStrings.signIn,),
+                    child: const SignInButton(
+                      text: MyStrings.signIn,
+                    ),
                   ),
                 ),
               ),

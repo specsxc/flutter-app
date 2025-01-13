@@ -36,6 +36,13 @@ class _LoginViewState extends State<LoginView> {
                 prefixIcon: Icon(MdiIcons.accountCircleOutline),
                 initialValue: '',
                 hintText: MyStrings.email,
+                textShadows: [
+                  Shadow(
+                    blurRadius: 8,
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
               const SizedBox(height: 40),
               const BasicTextFormField(

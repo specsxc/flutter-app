@@ -6,12 +6,14 @@ class BasicTextFormField extends StatefulWidget {
   final String hintText;
   final bool isPasswordField;
   final Widget? prefixIcon;
+  final List<Shadow>? textShadows;
 
   const BasicTextFormField({
     required this.initialValue,
     required this.hintText,
     this.isPasswordField = false,
     this.prefixIcon,
+    this.textShadows,
     super.key,
   });
 
@@ -47,13 +49,7 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
             fontSize: 15,
             fontWeight: FontWeight.w400,
             color: MyColors.hintColor.withOpacity(0.3),
-            shadows: const [
-              Shadow(
-                blurRadius: 8,
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                offset: Offset(0, 4),
-              ),
-            ],
+            shadows: widget.textShadows,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

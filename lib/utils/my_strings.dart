@@ -7,4 +7,7 @@ class MyStrings {
   static const noAccount = 'Don’t have account ? ';
   static const signUp = 'Sign up';
   static const goBack = 'Back';
+  static const emailShort = 'Email';
+  static const confirmPassword = 'Confirm password';
+  static const fullName = 'Full name';
 }

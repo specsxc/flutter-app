@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/my_strings.dart';
 
 class SignInButton extends StatelessWidget {
   final String text;

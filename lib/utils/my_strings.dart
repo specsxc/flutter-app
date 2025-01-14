@@ -11,4 +11,5 @@ class MyStrings {
   static const confirmPassword = 'Confirm Password';
   static const fullName = 'Full Name';
   static const haveAccount = 'Already have an account ? ';
+  static const logged = 'Hello!';
 }

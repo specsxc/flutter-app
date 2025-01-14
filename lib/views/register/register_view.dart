@@ -3,13 +3,17 @@ import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/login/login_view.dart';
 import 'package:flutter_app/views/widgets/basic_text_form_field.dart';
+import 'package:flutter_app/views/widgets/sign_in_button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../widgets/sign_in_button.dart';
-
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,58 +72,54 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 46),
-              const Column(
-                children: [
-                  BasicTextFormField(
-                    prefixIcon: Icon(MdiIcons.accountCircleOutline),
-                    initialValue: '',
-                    hintText: MyStrings.fullName,
-                  ),
-                  SizedBox(height: 40),
-                  BasicTextFormField(
-                    prefixIcon: Icon(MdiIcons.emailOutline),
-                    initialValue: '',
-                    hintText: MyStrings.emailShort,
-                  ),
-                  SizedBox(height: 40),
-                  BasicTextFormField(
-                    prefixIcon: Icon(MdiIcons.lockOutline),
-                    initialValue: '',
-                    hintText: MyStrings.password,
-                    isPasswordField: true,
-                  ),
-                  SizedBox(height: 40),
-                  BasicTextFormField(
-                    prefixIcon: Icon(MdiIcons.lockOutline),
-                    initialValue: '',
-                    hintText: MyStrings.confirmPassword,
-                    isPasswordField: true,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 70),
-              SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterView(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    const BasicTextFormField(
+                      prefixIcon: Icon(MdiIcons.accountCircleOutline),
+                      hintText: MyStrings.fullName,
+                    ),
+                    const SizedBox(height: 40),
+                    const BasicTextFormField(
+                      prefixIcon: Icon(MdiIcons.emailOutline),
+                      hintText: MyStrings.emailShort,
+                    ),
+                    const SizedBox(height: 40),
+                    const BasicTextFormField(
+                      prefixIcon: Icon(MdiIcons.lockOutline),
+                      hintText: MyStrings.password,
+                      isPasswordField: true,
+                    ),
+                    const SizedBox(height: 40),
+                    const BasicTextFormField(
+                      prefixIcon: Icon(MdiIcons.lockOutline),
+                      hintText: MyStrings.confirmPassword,
+                      isPasswordField: true,
+                    ),
+                    const SizedBox(height: 70),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterView(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: MyColors.whiteColor,
+                          backgroundColor: MyColors.purpleFadeColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: MyColors.whiteColor,
-                      backgroundColor: MyColors.purpleFadeColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        child: const SignInButton(text: MyStrings.signUp),
                       ),
                     ),
-                    child: const SignInButton(text: MyStrings.signUp),
-                  ),
+                  ],
                 ),
               ),
               const SizedBox(height: 120),

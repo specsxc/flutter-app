@@ -36,7 +36,6 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    final hasError = widget.errorText != null;
     return TextFormField(
       obscureText: !_isPasswordVisible,
       decoration: InputDecoration(

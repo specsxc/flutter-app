@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_images.dart';
+import 'package:flutter_app/utils/my_preferences.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/home/home_view.dart';
 import 'package:flutter_app/views/register/register_view.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_app/views/widgets/forget_password.dart';
 import 'package:flutter_app/views/widgets/sign_in_button.dart';
 import 'package:flutter_app/views/widgets/sign_in_text.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -22,7 +22,8 @@ class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
-  String? _errorMessage;
+  String? _emailError;
+  String? _passwordError;
 
   final String _correctEmail = 'login123';
   final String _correctPassword = '123';
@@ -30,15 +31,19 @@ class _LoginViewState extends State<LoginView> {
   Future<void> _signIn() async {
     if (_formKey.currentState?.validate() ?? false) {
       if (_email == _correctEmail && _password == _correctPassword) {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('isLoggedIn', true);
+        await MyPreferences.setLoggedIn(value: true);
         await Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeView()),
         );
       } else {
         setState(() {
-          _errorMessage = 'Invalid email or password.';
+          if (_email != _correctEmail) {
+            _emailError = 'Not a valid email';
+          }
+          if (_password != _correctPassword) {
+            _passwordError = 'Not a valid password';
+          }
         });
       }
     }
@@ -65,6 +70,7 @@ class _LoginViewState extends State<LoginView> {
                     children: [
                       BasicTextFormField(
                         prefixIcon: const Icon(MdiIcons.accountCircleOutline),
+                        errorText: _emailError,
                         hintText: MyStrings.email,
                         textShadows: const [
                           Shadow(
@@ -77,6 +83,8 @@ class _LoginViewState extends State<LoginView> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Email or User Name cannot be empty';
+                          } else if (_emailError != null) {
+                            return _emailError;
                           }
                           return null;
                         },
@@ -84,12 +92,15 @@ class _LoginViewState extends State<LoginView> {
                       const SizedBox(height: 40),
                       BasicTextFormField(
                         prefixIcon: const Icon(MdiIcons.lockOutline),
+                        errorText: _passwordError,
                         isPasswordField: true,
                         hintText: MyStrings.password,
                         onChanged: (value) => _password = value.trim(),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Password cannot be empty';
+                          } else if (_passwordError != null) {
+                            return _passwordError;
                           }
                           return null;
                         },
@@ -99,14 +110,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 40),
                 const ForgetPassword(),
-                if (_errorMessage != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      _errorMessage!,
-                      style: const TextStyle(color: Colors.red),
-                    ),
-                  ),
                 const SizedBox(height: 40),
                 SizedBox(
                   width: double.infinity,

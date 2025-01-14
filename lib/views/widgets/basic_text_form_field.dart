@@ -8,6 +8,7 @@ class BasicTextFormField extends StatefulWidget {
   final List<Shadow>? textShadows;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final String? errorText;
 
   const BasicTextFormField({
     required this.hintText,
@@ -17,6 +18,7 @@ class BasicTextFormField extends StatefulWidget {
     super.key,
     this.validator,
     this.onChanged,
+    this.errorText,
   });
 
   @override
@@ -34,11 +36,14 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final hasError = widget.errorText != null;
     return TextFormField(
       obscureText: !_isPasswordVisible,
       decoration: InputDecoration(
+        errorText: widget.errorText,
         prefixIcon: widget.prefixIcon,
         prefixIconColor: MyColors.purpleColor,
+        suffixIconColor: MyColors.blackColorSuffix.withOpacity(0.7),
         suffixIcon: widget.isPasswordField
             ? GestureDetector(
                 onTap: () {
@@ -73,10 +78,17 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(
-            color: MyColors.purpleColorBorder,
+            color: MyColors.redColorError,
             width: 2,
           ),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: MyColors.redColorError,
+              width: 2,
+            ),
+          ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(

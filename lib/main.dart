@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/my_preferences.dart';
-import 'package:flutter_app/views/home/home_view_copy.dart';
+import 'package:flutter_app/views/home/home_view.dart';
 import 'package:flutter_app/views/login/login_view.dart';
 
 void main() async {

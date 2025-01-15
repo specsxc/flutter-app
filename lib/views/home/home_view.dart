@@ -14,7 +14,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   Future<void> _signOut(BuildContext context) async {
     await MyPreferences.setLoggedIn(value: false);
     await Navigator.pushReplacement(
@@ -79,6 +78,15 @@ class _HomeViewState extends State<HomeView> {
             ),
             ElevatedButton(
               onPressed: () async {
+                if (title.isEmpty || description.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('All fields are required.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                  return;
+                }
                 if (note == null) {
                   // Create new note
                   final newNote = Note(
@@ -86,7 +94,7 @@ class _HomeViewState extends State<HomeView> {
                     number: notes.length + 1,
                     title: title,
                     description: description,
-                    createdTime: DateTime.now(),
+/*                    createdTime: DateTime.now(),*/
                   );
                   await NotesDatabase.instance.create(newNote);
                 } else {
@@ -114,19 +122,6 @@ class _HomeViewState extends State<HomeView> {
     await _loadNotes();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -151,8 +146,38 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ],
               ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  final note = notes[index];
+                  return ListTile(
+                    title: Text(note.title),
+                    subtitle: Text(note.description),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () => _addOrEditNote(note: note),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => _deleteNote(note),
+                        ),
+                      ],
+                    ),
+                    onTap: () => _addOrEditNote(note: note),
+                  );
+                },
+              ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _addOrEditNote,
+          child: const Icon(Icons.add),
         ),
       ),
     );

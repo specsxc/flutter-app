@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/db/notes_db.dart';
+import 'package:flutter_app/db/notes_db_crud.dart';
+import 'package:flutter_app/db/notes_db_service.dart';
 import 'package:flutter_app/utils/my_colors.dart';
 import 'package:flutter_app/utils/my_note.dart';
 import 'package:flutter_app/utils/my_preferences.dart';
@@ -22,16 +23,23 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  late NotesDatabaseCRUD notesService;
   List<Note> notes = [];
 
   @override
   void initState() {
     super.initState();
-    _loadNotes();
+    _initializeDatabase();
+  }
+
+  Future<void> _initializeDatabase() async {
+    final db = await NotesDatabaseService.instance.database;
+    notesService = NotesDatabaseCRUD(db);
+    await _loadNotes();
   }
 
   Future<void> _loadNotes() async {
-    final loadedNotes = await NotesDatabase.instance.readAllNotes();
+    final loadedNotes = await notesService.readAllNotes();
     setState(() {
       notes = loadedNotes;
     });
@@ -96,7 +104,7 @@ class _HomeViewState extends State<HomeView> {
                     description: description,
 /*                    createdTime: DateTime.now(),*/
                   );
-                  await NotesDatabase.instance.create(newNote);
+                  await notesService.create(newNote);
                 } else {
                   // Update existing note
                   final updatedNote = note.copy(
@@ -104,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
                     description: description,
                     isImportant: isImportant,
                   );
-                  await NotesDatabase.instance.update(updatedNote);
+                  await notesService.update(updatedNote);
                 }
                 Navigator.of(context).pop();
                 await _loadNotes();
@@ -118,7 +126,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> _deleteNote(Note note) async {
-    await NotesDatabase.instance.delete(note.id!);
+    await notesService.delete(note.id!);
     await _loadNotes();
   }
 

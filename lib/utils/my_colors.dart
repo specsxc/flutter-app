@@ -9,6 +9,7 @@ class MyColors {
   static final purpleFadeColor = HexColor('#BB84E8');
   static final redColorError = HexColor('#FF0000');
   static final blackColorSuffix = HexColor('#000000');
+  static final grayColorAlert = HexColor('#EEEEEE');
 }
 
 class HexColor extends Color {

@@ -55,6 +55,15 @@ class _HomeViewState extends State<HomeView> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: MyColors.grayColorAlert,
+          titleTextStyle: TextStyle(
+            color: MyColors.blackColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
           title: Text(note == null ? 'Add Note' : 'Edit Note'),
           content: Column(
             mainAxisSize: MainAxisSize.min,

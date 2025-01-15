@@ -6,6 +6,7 @@ import 'package:flutter_app/utils/my_note.dart';
 import 'package:flutter_app/utils/my_preferences.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/login/login_view.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeView extends StatefulWidget {
@@ -75,6 +76,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               TextField(
                 decoration: const InputDecoration(labelText: 'Description'),
+                maxLines: 5,
                 onChanged: (value) => description = value,
                 controller: TextEditingController(text: note?.description),
               ),
@@ -91,6 +93,14 @@ class _HomeViewState extends State<HomeView> {
                   const Text('Mark as Important'),
                 ],
               ),
+              if (note != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    'Created: ${note.createdTime}',
+                    style: TextStyle(color: MyColors.grayColor),
+                  ),
+                ),
             ],
           ),
           actions: [
@@ -110,17 +120,15 @@ class _HomeViewState extends State<HomeView> {
                   return;
                 }
                 if (note == null) {
-                  // Create new note
                   final newNote = Note(
                     isImportant: isImportant,
                     number: notes.length + 1,
                     title: title,
                     description: description,
-/*                    createdTime: DateTime.now(),*/
+                    createdTime: DateTime.now(),
                   );
                   await notesService.create(newNote);
                 } else {
-                  // Update existing note
                   final updatedNote = note.copy(
                     title: title,
                     description: description,
@@ -222,7 +230,20 @@ class _HomeViewState extends State<HomeView> {
                   final note = notes[index];
                   return ListTile(
                     title: Text(note.title),
-                    subtitle: Text(note.description),
+                    isThreeLine: true,
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(note.description),
+                        Text(
+                          DateFormat('dd/MM HH:mm').format(note.createdTime),
+                          style: TextStyle(
+                            color: MyColors.blackColor,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

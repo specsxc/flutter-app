@@ -33,7 +33,8 @@ class NotesDatabaseService {
         isImportant $boolType,
         number $integerType,
         title $textType,
-        description $textType
+        description $textType,
+        time $textType
       )
     ''');
   }

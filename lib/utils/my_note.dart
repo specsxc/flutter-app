@@ -7,17 +7,15 @@ class NoteFields {
     number,
     title,
     description,
-/*    time,*/
+    time,
   ];
 
-  static const String id = '_id';
+  static const String id = 'id';
   static const String isImportant = 'isImportant';
   static const String number = 'number';
   static const String title = 'title';
   static const String description = 'description';
-/*
   static const String time = 'time';
-*/
 }
 
 class Note {
@@ -26,19 +24,14 @@ class Note {
   final int number;
   final String title;
   final String description;
-
-/*
   final DateTime createdTime;
-*/
 
   const Note({
     required this.isImportant,
     required this.number,
     required this.title,
     required this.description,
-/*
     required this.createdTime,
-*/
     this.id,
   });
 
@@ -48,9 +41,7 @@ class Note {
     int? number,
     String? title,
     String? description,
-/*
     DateTime? createdTime,
-*/
   }) =>
       Note(
         id: id ?? this.id,
@@ -58,9 +49,7 @@ class Note {
         number: number ?? this.number,
         title: title ?? this.title,
         description: description ?? this.description,
-/*
         createdTime: createdTime ?? this.createdTime,
-*/
       );
 
   static Note fromJson(Map<String, Object?> json) => Note(
@@ -68,9 +57,9 @@ class Note {
         number: json[NoteFields.number]! as int,
         title: json[NoteFields.title]! as String,
         description: json[NoteFields.description]! as String,
-/*        createdTime: json[NoteFields.time] != null
-        ? DateTime.parse(json[NoteFields.time]! as String)
-        : DateTime.now(),*/
+        createdTime: json[NoteFields.time] != null
+            ? DateTime.parse(json[NoteFields.time]! as String)
+            : DateTime.now(),
         isImportant: json[NoteFields.isImportant] == 1,
       );
 
@@ -80,8 +69,6 @@ class Note {
         NoteFields.number: number,
         NoteFields.title: title,
         NoteFields.description: description,
-/*
         NoteFields.time: createdTime.toIso8601String(),
-*/
       };
 }

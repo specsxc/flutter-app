@@ -6,6 +6,7 @@ import 'package:flutter_app/utils/my_note.dart';
 import 'package:flutter_app/utils/my_preferences.dart';
 import 'package:flutter_app/utils/my_strings.dart';
 import 'package:flutter_app/views/login/login_view.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -72,7 +73,11 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Checkbox(
                     value: isImportant,
-                    onChanged: (value) => setState(() => isImportant = value!),
+                    onChanged: (value) {
+                      setState(() {
+                        isImportant = value!;
+                      });
+                    },
                   ),
                   const Text('Mark as Important'),
                 ],
@@ -137,22 +142,68 @@ class _HomeViewState extends State<HomeView> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
-                children: [
-                  Text(
-                    MyStrings.logOut,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 30,
-                      color: MyColors.purpleColor,
-                      fontFamily: 'Inter',
-                    ),
+              ColoredBox(
+                color: MyColors.purpleFadeColor,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            MdiIcons.noteOutline,
+                            size: 30,
+                            color: MyColors.whiteColor,
+                          ),
+                          Text(
+                            MyStrings.notes,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 25,
+                              color: MyColors.whiteColor,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              TextButton(
+                                onPressed: () => _signOut(context),
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: Size.zero,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                child: Text(
+                                  MyStrings.logOut,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                    color: MyColors.whiteColor,
+                                    fontFamily: 'Inter',
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.logout),
+                                onPressed: () {
+                                  _signOut(context);
+                                },
+                                iconSize: 15,
+                                tooltip: 'Log Out',
+                                color: MyColors.whiteColor,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.logout),
-                    onPressed: () => _signOut(context),
-                  ),
-                ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -185,6 +236,8 @@ class _HomeViewState extends State<HomeView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: _addOrEditNote,
+          backgroundColor: MyColors.purpleFadeColor,
+          foregroundColor: MyColors.purpleColor,
           child: const Icon(Icons.add),
         ),
       ),

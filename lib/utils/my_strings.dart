@@ -12,4 +12,5 @@ class MyStrings {
   static const fullName = 'Full Name';
   static const haveAccount = 'Already have an account ? ';
   static const logOut = 'Log Out';
+  static const notes = 'Notes';
 }

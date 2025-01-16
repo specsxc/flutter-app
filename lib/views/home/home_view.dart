@@ -174,11 +174,12 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: MyColors.blueBackGroundScaffold,
         body: SingleChildScrollView(
           child: Column(
             children: [
               ColoredBox(
-                color: MyColors.purpleFadeColor,
+                color: MyColors.purpleNotes,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                   child: Column(
@@ -246,43 +247,60 @@ class _HomeViewState extends State<HomeView> {
                 itemCount: notes.length,
                 itemBuilder: (context, index) {
                   final note = notes[index];
-                  return ListTile(
-                    title: Text(
-                      note.title,
-                      style: TextStyle(
-                        color: note.isImportant
-                            ? MyColors.redColorError
-                            : MyColors.blackColor,
+                  return Container(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: note.isImportant
+                          ? MyColors.redColorBackGround
+                          : MyColors.yellowColorBackGround,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: MyColors.blackColor.withValues(alpha: 0.2),
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        note.title,
+                        style: TextStyle(
+                          color: note.isImportant
+                              ? MyColors.redColorError
+                              : MyColors.blackColor,
+                        ),
                       ),
-                    ),
-                    isThreeLine: true,
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(note.description),
-                        Text(
-                          DateFormat('dd/MM HH:mm').format(note.createdTime),
-                          style: TextStyle(
-                            color: MyColors.blackColor,
-                            fontSize: 12,
+                      isThreeLine: true,
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(note.description),
+                          Text(
+                            DateFormat('dd/MM HH:mm').format(note.createdTime),
+                            style: TextStyle(
+                              color: MyColors.blackColor,
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () => _addOrEditNote(note: note),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () => _deleteNote(note),
+                          ),
+                        ],
+                      ),
+                      onTap: () => _addOrEditNote(note: note),
                     ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () => _addOrEditNote(note: note),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => _deleteNote(note),
-                        ),
-                      ],
-                    ),
-                    onTap: () => _addOrEditNote(note: note),
                   );
                 },
               ),

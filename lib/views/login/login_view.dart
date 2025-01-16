@@ -29,6 +29,11 @@ class _LoginViewState extends State<LoginView> {
   final String _correctPassword = '123';
 
   Future<void> _signIn() async {
+    setState(() {
+      _emailError = null;
+      _passwordError = null;
+    });
+
     if (_formKey.currentState?.validate() ?? false) {
       if (_email == _correctEmail && _password == _correctPassword) {
         await MyPreferences.setLoggedIn(value: true);

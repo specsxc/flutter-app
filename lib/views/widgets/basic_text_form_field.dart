@@ -42,7 +42,7 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
         errorText: widget.errorText,
         prefixIcon: widget.prefixIcon,
         prefixIconColor: MyColors.purpleColor,
-        suffixIconColor: MyColors.blackColorSuffix.withOpacity(0.7),
+        suffixIconColor: MyColors.blackColorSuffix.withValues(alpha: 0.7),
         suffixIcon: widget.isPasswordField
             ? GestureDetector(
                 onTap: () {
@@ -57,7 +57,7 @@ class _BasicTextFormFieldState extends State<BasicTextFormField> {
         hintStyle: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w400,
-          color: MyColors.hintColor.withOpacity(0.3),
+          color: MyColors.hintColor.withValues(alpha: 0.3),
           shadows: widget.textShadows,
         ),
         enabledBorder: OutlineInputBorder(

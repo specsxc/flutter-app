@@ -75,22 +75,40 @@ class _HomeViewState extends State<HomeView> {
                 controller: TextEditingController(text: note?.title),
               ),
               TextField(
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  alignLabelWithHint: true,
+                ),
                 maxLines: 5,
                 onChanged: (value) => description = value,
                 controller: TextEditingController(text: note?.description),
               ),
               Row(
                 children: [
-                  Checkbox(
-                    value: isImportant,
-                    onChanged: (value) {
-                      setState(() {
-                        isImportant = value!;
-                      });
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return Row(
+                        children: [
+                          Checkbox(
+                            value: isImportant,
+                            onChanged: (value) {
+                              setState(() {
+                                isImportant = value!;
+                              });
+                            },
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isImportant = !isImportant;
+                              });
+                            },
+                            child: const Text('Mark as Important'),
+                          ),
+                        ],
+                      );
                     },
                   ),
-                  const Text('Mark as Important'),
                 ],
               ),
               if (note != null)
@@ -229,7 +247,14 @@ class _HomeViewState extends State<HomeView> {
                 itemBuilder: (context, index) {
                   final note = notes[index];
                   return ListTile(
-                    title: Text(note.title),
+                    title: Text(
+                      note.title,
+                      style: TextStyle(
+                        color: note.isImportant
+                            ? MyColors.redColorError
+                            : MyColors.blackColor,
+                      ),
+                    ),
                     isThreeLine: true,
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
